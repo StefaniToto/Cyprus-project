@@ -1,0 +1,21 @@
+
+
+
+
+
+
+<div class="card mb-2 bg-light border-light" [ngClass]="{'card-disabled': disabled}">
+    <br />
+  <img class="mx-auto product-img" [src]="'../../../assets/images/' + product.img + '.svg'" /> 
+
+ 
+    <div class="card-body">
+        <h5 class="card-title">{{product.title.toUpperCase()}}</h5>
+        <p class="card-text" *ngIf="disabled && product.created && nextProduct">You have created at least a {{product.title.slice(0, -1)}}. You can continue with creating {{nextProduct.title}}.</p>
+        <p class="card-text" *ngIf="!disabled && !product.created">There are no {{product.title}} defined. In order to start working, you have to create at least one {{product.title.slice(0, -1)}}.</p>
+    </div>
+    <div class="card-footer bg-transparent border-light">
+        <img class="mx-auto d-block success-icon" src="../../../assets/images/success.svg" *ngIf="product.created" />
+        <a class="btn btn-sm btn-outline-secondary create-btn" *ngIf="!disabled" (click)="product.openCreateModal()">Create</a>
+    </div>
+  </div>
