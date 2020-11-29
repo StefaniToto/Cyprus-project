@@ -11,7 +11,7 @@ import { ListData } from '../../models/ListData';
 })
 export class AddNewDataComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  dataModel: ListData;
+  dataModel: any;
   public form: FormGroup;
   public fields: FormlyFieldConfig[];
   public model: any;
@@ -49,7 +49,7 @@ export class AddNewDataComponent implements OnInit, OnDestroy, AfterViewInit {
       fieldGroup: [
         {
           className: 'col-sm-6',
-          key: 'first_name',
+          key: 'Name',
           type: 'input',
           templateOptions: {
             placeholder: 'Name',
@@ -59,7 +59,7 @@ export class AddNewDataComponent implements OnInit, OnDestroy, AfterViewInit {
 
         {
           className: 'col-sm-6',
-          key: 'last_name',
+          key: 'Surname',
           type: 'input',
           templateOptions: {
             type: 'text',
@@ -70,7 +70,7 @@ export class AddNewDataComponent implements OnInit, OnDestroy, AfterViewInit {
         },
         {
           className: 'col-sm-6',
-          key: 'email',
+          key: 'Email',
           type: 'input',
           templateOptions: {
             type: 'text',
@@ -81,7 +81,7 @@ export class AddNewDataComponent implements OnInit, OnDestroy, AfterViewInit {
         },
         {
           className: 'col-sm-6',
-          key: 'ip_address',
+          key: 'RoleId',
           type: 'input',
           templateOptions: {
             type: 'text',
@@ -100,10 +100,10 @@ export class AddNewDataComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   putData(params) {
-    this.form.get('first_name').setValue(params.first_name),
-      this.form.get('last_name').setValue(params.last_name),
-      this.form.get('ip_address').setValue(params.ip_address),
-      this.form.get('email').setValue(params.email)
+    this.form.get('Name').setValue(params.Name),
+      this.form.get('Surname').setValue(params.Surname),
+      this.form.get('RoleId').setValue(params.RoleId),
+      this.form.get('Email').setValue(params.Email)
   }
 
 
@@ -111,13 +111,13 @@ export class AddNewDataComponent implements OnInit, OnDestroy, AfterViewInit {
   onSubmit() {
 
     this.dataModel = {
-      first_name: this.form.get('first_name').value,
-      last_name: this.form.get('last_name').value,
-      ip_address: this.form.get('ip_address').value,
-      email: this.form.get('email').value,
+      Name: this.form.get('Name').value,
+      Surname: this.form.get('Surname').value,
+      RoleId: this.form.get('RoleId').value,
+      Email: this.form.get('Email').value,
       pageVar: false
     }
-    this.router.navigate(['/dashboard/exam1/main', this.dataModel]);
+    this.router.navigate(['/module1/module1', this.dataModel]);
 
   }
 
@@ -126,13 +126,13 @@ export class AddNewDataComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.dataModel = {
       id: this.par.id,
-      first_name: this.form.get('first_name').value,
-      last_name: this.form.get('last_name').value,
-      ip_address: this.form.get('ip_address').value,
-      email: this.form.get('email').value,
+      Name: this.form.get('Name').value,
+      Surname: this.form.get('Surname').value,
+      RoleId: this.form.get('RoleId').value,
+      Email: this.form.get('Email').value,
       pageVar: true
     }
-    this.router.navigate(['/dashboard/exam1/main', this.dataModel]);
+    this.router.navigate(['/module1/module1', this.dataModel]);
 
   }
 

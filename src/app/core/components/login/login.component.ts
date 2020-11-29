@@ -60,10 +60,10 @@ export class LoginComponent implements OnInit {
   
     if (data.form.value.username == this.loggedUser.username && data.form.value.password == this.loggedUser.pass) {
       localStorage.setItem(key, data.form.value.password);
-    //  this.toasterService.pop('success', 'Login Sucess', '');
+     // this.toasterService.pop('success', 'Login Sucess', '');
       // const myItem = localStorage.getItem(key);        
       setTimeout(() => { 
-        this.router.navigate(['/dashboard'], { relativeTo: this.route })
+        this.router.navigate(['/module1'], { relativeTo: this.route })
        }, 1000);
      
 

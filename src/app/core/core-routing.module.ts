@@ -8,7 +8,7 @@ const routes: Routes = [
     component: CoreBaseComponent,
     children: [
       {
-        path: 'dashboard',
+        path: '',
         loadChildren: () =>
           import('../dashboard/dashboard.module').then(
             (m) => m.DashboardModule
@@ -19,46 +19,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./../systems/systems.module').then((m) => m.SystemsModule),
       },
-      // {
-      //   path: 'environment',
-      //   loadChildren: () =>
-      //     import('./../environment/environment.module').then((m) => m.EnvironmentModule),
-      // },
-      // {
-      //   path: 'containers',
-      //   loadChildren: () =>
-      //     import('./../containers/containers.module').then(m => m.ContainersModule)
-      // },
-      // {
-      //   path: 'transformation',
-      //   loadChildren: () =>
-      //     import('./../transformation/transformation.module').then(m => m.TransformationModule)
-      // },
-      // {
-      //   path: 'data-manager',
-      //   loadChildren: () =>
-      //     import('./../data-manager/data-manager.module').then((m) => m.DataManagerModule),
-      // },
-      // {
-      //   path: 'consolidation',
-      //   loadChildren: () =>
-      //     import('./../consolidation/consolidation.module').then((m) => m.ConsolidationModule),
-      // },
-      // {
-      //   path: 'reports',
-      //   loadChildren: () =>
-      //     import('./../reports/reports.module').then((m) => m.ReportsModule),
-      // },
-      // {
-      //   path: 'search-iq',
-      //   loadChildren: () =>
-      //     import('../search-iq/search-iq.module').then((m) => m.SearchIQModule),
-      // },{
-      //   path: 'execution-logs',
-      //   loadChildren: () =>
-      //     import('./../execution-logs/execution-logs.module').then(m => m.ExecutionLogsModule)
-
-      // },
+     
       { path: '**', redirectTo: 'dashboard/main' }
     ],
   },

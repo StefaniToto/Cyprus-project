@@ -35,6 +35,7 @@ import { OrdersService } from '../systems/services/orders.service';
     DashboardComponent,
     GuideComponent,
     ProductCardComponent,
+ 
 
   ],
   imports: [

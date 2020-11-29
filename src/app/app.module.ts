@@ -20,8 +20,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment.prod';
 import { FormlySelectComponent } from './dashboard/components/formly-select/formly-select.component';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-import { ProjectReducer } from './systems/store/reducers/project.reducer';
-import { ProjectEffect } from './systems/store/effects/project.effects';
+import { DatatableFormComponent } from './dashboard/components/data-table/data-table.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ButtoniFormComponent } from './dashboard/components/buttoni-form/buttoni-form.component';
+
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -34,14 +36,13 @@ const APP_CONTAINERS = [
     APP_CONTAINERS,
     LoginComponent,
     Error404Component,
-    FormlySelectComponent
+    FormlySelectComponent,
+    DatatableFormComponent,
+    ButtoniFormComponent
+
   ],
   imports: [
     DropDownsModule,
-
-    //  EffectsModule.forRoot([ ProjectEffect ]),
-    // StoreModule.forFeature('projectState', ProjectReducer),
-
     BrowserModule,
     AppRoutingModule,
     FormlyModule.forRoot(formlyConfig),
@@ -53,8 +54,8 @@ const APP_CONTAINERS = [
     StoreModule.forRoot({}),
     EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    NgxDatatableModule,
 
-   // PaginationModule.forRoot()
    FormlyModule.forChild({
     types: [
       {
@@ -73,6 +74,7 @@ const APP_CONTAINERS = [
     FormlyBootstrapModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
+    NgxDatatableModule
 
   ],
   providers: [],

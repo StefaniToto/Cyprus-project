@@ -15,11 +15,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'main',
+        redirectTo: 'module1',
         pathMatch: 'full'
       },
       {
-        path: 'main',
+        path: 'module1',
         component: MainComponent,
         data: {
           title: 'Main Page'

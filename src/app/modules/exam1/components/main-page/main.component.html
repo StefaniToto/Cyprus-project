@@ -8,10 +8,10 @@
     </div>
   </div>
 
-  <formly-form [model]="model" [fields]="fieldsTable" [options]="options" [form]="form">
-  </formly-form>
+  <!-- <formly-form [model]="model" [fields]="fieldsTable" [options]="options" [form]="form">
+  </formly-form>  -->
 
-  <form [formGroup]="form" (ngSubmit)="onSubmitForm(data)" class="py-3">
+  <form [formGroup]="form" class="py-3">
     <formly-form [model]="modelTable" [fields]="fieldsTable" [options]="options" [form]="form">
     </formly-form>
   </form>

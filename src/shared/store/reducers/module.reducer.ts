@@ -19,61 +19,13 @@ const initialState: Array<Module> = [
       ModuleInjector.open(AddSystemModalComponent, { centered: true, backdrop: 'static' });
     }
   },
-  {
-    title: 'Data Sources',
-    img: 'data',
-    url: '/environment/environments-list/1',
-    created: false,
-    openCreateModal: () => {
-    //  let modalRef = ModuleInjector.open(CreateEnvironmentModalComponent, { centered: true, backdrop: 'static' });
-    //  modalRef.componentInstance.isDataSource = true;
-    }
-  },
-  {
-    title: 'Target Environments',
-    img: 'environment',
-    url: '/environment/environments-list/0',
-    created: false,
-    openCreateModal: () => {
-  //    let modalRef = ModuleInjector.open(CreateEnvironmentModalComponent, { centered: true, backdrop: 'static' });
-  //    modalRef.componentInstance.isDataSource = false;
-    }
-  },
-  {
-    title: 'Containers',
-    img: 'container',
-    url: '/containers/containers-list',
-    created: false,
-    openCreateModal: () => {
-     // ModuleInjector.open(AddContainerModalComponent, { centered: true, backdrop: 'static' });
-    }
-  },
+
   {
     title: 'Transformation Schema',
     img: 'transformation',
     url: '/transformation/transformation-schema'
   },
-  {
-    title: 'Consolidation Manager',
-    img: 'transformation',
-    url: '/consolidation/consolidationList'
-  },
-  {
-    title: 'Data Manager',
-    img: 'transformation',
-    url: '/data-manager/datamanagerlist'
-  },
-  { 
-    title: 'Reports', 
-    img: 'transformation', 
-    url: '/reports/dashboard'
-  },
-
-  {
-    title: 'SearchIQ',
-    img: 'search',
-    url: '/search-iq/search'
-  }
+ 
 
 ];
 

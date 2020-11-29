@@ -11,7 +11,7 @@ export class ExamService {
   private url;
 
   constructor(private httpClient: HttpClient) {
-    this.url = 'https://my-json-server.typicode.com/stefani0/GreeceTest/data/';
+    this.url = 'https://my-json-server.typicode.com/stefani0/GreeceTest/customers';
   }
 
 

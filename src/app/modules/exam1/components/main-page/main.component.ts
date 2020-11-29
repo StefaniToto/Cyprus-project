@@ -58,12 +58,12 @@ export class MainComponent implements OnInit, OnDestroy {
           type: 'datatable',
           templateOptions: {
             columns: [
-              { name: 'Action', prop: 'actions' },
+               { name: 'Action', prop: 'actions' },
               { name: 'ID', prop: 'id', },
-              { name: 'Name', prop: 'first_name' },
-              { name: 'Surname', prop: 'last_name' },
-              { name: 'Email', prop: 'email' },
-              { name: 'Ip Adress', prop: 'ip_address' }
+              { name: 'Name', prop: 'Name' },
+              { name: 'Surname', prop: 'Surname' },
+              { name: 'Email', prop: 'Email' },
+              { name: 'Ip Adress', prop: 'RoleId' }
 
             ],
             onClickAction: ($event) => {
@@ -101,21 +101,21 @@ export class MainComponent implements OnInit, OnDestroy {
               },
               {
                 type: 'input',
-                key: 'first_name',
+                key: 'Name',
                 templateOptions: {
                   type: 'text',
                 },
               },
               {
                 type: 'input',
-                key: 'last_name',
+                key: 'Surname',
                 templateOptions: {
                   type: 'text',
                 },
               },
               {
                 type: 'input',
-                key: 'email',
+                key: 'Email',
                 templateOptions: {
                   valueProp: 'gender',
 
@@ -123,7 +123,7 @@ export class MainComponent implements OnInit, OnDestroy {
               },
               {
                 type: 'input',
-                key: 'birthdate',
+                key: 'RoleId',
                 templateOptions: {
                   valueProp: 'birthdate',
 
@@ -131,7 +131,7 @@ export class MainComponent implements OnInit, OnDestroy {
               },
               {
                 type: 'input',
-                key: 'ip_address',
+                key: 'RoleId',
                 templateOptions: {
                   type: 'text',
                 },
@@ -149,11 +149,12 @@ export class MainComponent implements OnInit, OnDestroy {
   getData() {
     this.service.getData().subscribe(
       result => {
-       // console.log(result.success)
+        console.log('result here',result)
         this.modelTable = {
           data: result
         };
         this.filterTable = this.modelTable;
+        console.log('this.modelTable',this.modelTable)
        //  this.toasterService.pop('success', 'Data loaded', '')     
       }, 
       error => console.log('error')
@@ -162,13 +163,13 @@ export class MainComponent implements OnInit, OnDestroy {
 
   goToNewDataForm() {
     const pageVar = false;
-    this.router.navigate(['/dashboard/exam1/add', { newDataForm: pageVar }], { relativeTo: this.route });
+    this.router.navigate(['/module1/add', { newDataForm: pageVar }], { relativeTo: this.route });
   }
 
   goToUpdateDataForm(params: any) {
     const pageVar = true;
     params = { ...params, pageVar }
-    this.router.navigate(['/dashboard/exam1/add', params], { relativeTo: this.route });
+    this.router.navigate(['/module1/add', params], { relativeTo: this.route });
 
   }
 
@@ -187,10 +188,10 @@ export class MainComponent implements OnInit, OnDestroy {
 
   addData(params) {
     const body = {
-      first_name: params.first_name,
-      last_name: params.last_name,
-      email: params.email,
-      ip_address: params.ip_address
+      Name: params.Name,
+      Surname: params.Surname,
+      Email: params.Email,
+      RoleId: params.RoleId
     }
     this.service.addPost(body).subscribe(
       (res) => {
@@ -207,10 +208,10 @@ export class MainComponent implements OnInit, OnDestroy {
     const idrow = params.id;
     const body = {
       id: params.id,
-      first_name: params.first_name,
-      last_name: params.last_name,
-      email: params.email,
-      ip_address: params.ip_address
+      Name: params.Name,
+      Surname: params.Surname,
+      Email: params.Email,
+      RoleId: params.RoleId
     }
     this.service.updatePost(body).subscribe(
       (data) => {
