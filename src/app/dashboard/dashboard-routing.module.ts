@@ -7,7 +7,7 @@ const routes: Routes = [
   {path: '', component: GuideComponent, 
   
   children: [
-    {path: 'guide', component: GuideComponent},
+  //  {path: 'guide', component: GuideComponent},
     // {path: 'main', component: DashboardMainComponent}
   ]
 }

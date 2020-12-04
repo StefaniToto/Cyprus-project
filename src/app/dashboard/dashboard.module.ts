@@ -14,7 +14,6 @@ import { ChartsModule } from 'ng2-charts';
 
 import { FormlyModule } from '@ngx-formly/core';
 import { GuideComponent } from './pages/guide/guide.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
 import { StoreModule } from '@ngrx/store';
 import { ModuleReducer } from 'src/shared/store/reducers/module.reducer';
 import { ConnectIQSharedModule } from 'src/shared/modules/ConnectIQSharedModule.module';
@@ -33,8 +32,7 @@ import { OrdersService } from '../systems/services/orders.service';
 @NgModule({
   declarations: [
     DashboardComponent,
-    GuideComponent,
-    ProductCardComponent,
+    GuideComponent
  
 
   ],
