@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { GuideComponent } from './guide.component';
 
@@ -8,7 +9,8 @@ describe('GuideComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GuideComponent ]
+      declarations: [ GuideComponent ],
+      imports : [ StoreModule.forRoot({})]
     })
     .compileComponents();
   }));
@@ -20,6 +22,7 @@ describe('GuideComponent', () => {
   });
 
   it('should create', () => {
+    
     expect(component).toBeTruthy();
   });
 });
