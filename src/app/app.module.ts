@@ -19,7 +19,6 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment.prod';
 import { FormlySelectComponent } from './dashboard/components/formly-select/formly-select.component';
-import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { DatatableFormComponent } from './dashboard/components/data-table/data-table.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ButtoniFormComponent } from './dashboard/components/buttoni-form/buttoni-form.component';
@@ -42,7 +41,6 @@ const APP_CONTAINERS = [
 
   ],
   imports: [
-    DropDownsModule,
     BrowserModule,
     AppRoutingModule,
     FormlyModule.forRoot(formlyConfig),

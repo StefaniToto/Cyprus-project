@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Order } from '../models/order';
 
 
+@Injectable()
 export class OrdersService {
   fetchAllOrders(): Observable<Order[]> {
     return of([

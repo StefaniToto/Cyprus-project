@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { SystemsComponent } from './systems.component';
 import { SystemsRoutingModule } from './systems-routing.module';
 import { StoreModule } from '@ngrx/store';
@@ -18,8 +17,7 @@ import { FormlyModule } from '@ngx-formly/core';
   ],
   imports: [
     CommonModule,
-    SystemsRoutingModule,
-    FlexLayoutModule,
+    SystemsRoutingModule, 
     ConnectIQSharedModule,
     FormsModule,
     ReactiveFormsModule,
