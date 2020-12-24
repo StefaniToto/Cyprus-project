@@ -5,24 +5,28 @@ import { CoreBaseComponent } from './core.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { ModuleReducer } from 'src/shared/store/reducers/module.reducer';
-import { ConnectIQSharedModule } from 'src/shared/modules/ConnectIQSharedModule.module';
-import { RulesLayoutComponent } from './transformations/rules-layout/rules-layout.component';
+import { ConnectSharedModule } from 'src/shared/modules/ConnectSharedModule.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DemoMaterialModule } from './components/navbar/navbar-module';
 
 
 @NgModule({
-  declarations: [CoreBaseComponent,
-    RulesLayoutComponent],
+  declarations: [CoreBaseComponent,   
+    NavbarComponent],
   imports: [
     CommonModule,
     CoreRoutingModule,
-    ConnectIQSharedModule,
+    ConnectSharedModule,
+    MatNativeDateModule,
+    DemoMaterialModule,
     StoreModule.forFeature('modules', ModuleReducer),
   ],
   providers: [
 
   ],
   entryComponents : [
-    RulesLayoutComponent
+
   ]
 })
 export class CoreModule {}

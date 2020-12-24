@@ -6,23 +6,21 @@ import { DefaultLayoutComponent } from './core/components/default-layout/default
 
 import { FormlyModule } from '@ngx-formly/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './core/components/login/login.component';
 import { formlyConfig } from './core/utility/configs';
-// import {  PaginationModule } from 'ngx-bootstrap';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { Error404Component } from './core/components/error404/error404.component';
-
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment.prod';
 import { FormlySelectComponent } from './dashboard/components/formly-select/formly-select.component';
-import { DatatableFormComponent } from './dashboard/components/data-table/data-table.component';
+import { ButtoniFormComponent, DatatableFormComponent } from './core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ButtoniFormComponent } from './dashboard/components/buttoni-form/buttoni-form.component';
-
+import { ToasterModule } from 'angular2-toaster';
+import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './core/helpers';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -37,22 +35,26 @@ const APP_CONTAINERS = [
     Error404Component,
     FormlySelectComponent,
     DatatableFormComponent,
-    ButtoniFormComponent
+    ButtoniFormComponent,
+ 
 
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
     FormlyModule.forRoot(formlyConfig),
+    BrowserModule,
+    AppRoutingModule, 
     FormsModule,
     FormlyBootstrapModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxDatatableModule,
     BrowserAnimationsModule, // required animations module
     StoreModule.forRoot({}),
     EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    NgxDatatableModule,
+    ToasterModule.forRoot(), 
+  
+
 
    FormlyModule.forChild({
     types: [
@@ -72,10 +74,17 @@ const APP_CONTAINERS = [
     FormlyBootstrapModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
-    NgxDatatableModule
+    ToasterModule
 
   ],
-  providers: [],
+  providers: [
+
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider,
+
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

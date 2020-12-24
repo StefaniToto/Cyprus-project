@@ -15,12 +15,18 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'systems',
-        loadChildren: () =>
-          import('./../systems/systems.module').then((m) => m.SystemsModule),
+        path: 'list',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../list-data/list-data.module').then(m => m.ListDataModule)
+          },
+        ]
       },
-     
-      { path: '**', redirectTo: 'dashboard/main' }
+
+
+
+      { path: '**', redirectTo: 'login' }
     ],
   },
 ];

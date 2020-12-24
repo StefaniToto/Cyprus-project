@@ -3,43 +3,23 @@ import { Routes, RouterModule } from '@angular/router';
 import { DefaultLayoutComponent } from './core/components/default-layout/default-layout.component';
 import { LoginComponent } from './core/components/login/login.component';
 import { Error404Component } from './core/components/error404/error404.component';
+import { AuthGuard } from './core/helpers';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
+
   {
     path: 'login',
-    component: LoginComponent,
-    data: {
-      title: 'Login Page'
-    }
+    component: LoginComponent
   },
   {
     path: '404',
-    component: Error404Component,
-    data: {
-      title: 'Page 404'
-    }
+    component: Error404Component
   },
-  {
-    path: 'module1',
-    component: DefaultLayoutComponent,
-    data: {
-      title: 'HOME'
-    },
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./modules/exam1/exam1.module').then(m => m.Exam1Module)
-      },
-    ]
-  },
-  
-  { path: 'module2', loadChildren: () => import('./core/core.module').then(m => m.CoreModule) }
+
+  { path: '', 
+  canActivate: [AuthGuard],  
+  loadChildren: () => import('./core/core.module').then(m => m.CoreModule) }
   ,
   { path: '**', component: Error404Component }
 ];

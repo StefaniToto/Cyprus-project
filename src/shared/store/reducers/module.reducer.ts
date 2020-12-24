@@ -1,7 +1,6 @@
 import { Module } from '../models/module.model';
 import { ModuleActionTypes } from '../actions/module.action';
-import { AddSystemModalComponent } from 'src/app/systems/components/add-system-modal/add-system-modal.component';
-import { ModuleInjector } from 'src/shared/modules/ConnectIQSharedModule.module';
+import { ModuleInjector } from 'src/shared/modules/ConnectSharedModule.module';
 
 
 const initialState: Array<Module> = [
@@ -15,9 +14,9 @@ const initialState: Array<Module> = [
     img: 'system',
     url: '/systems/systemslist',
     created: false,
-    openCreateModal: () => {
-      ModuleInjector.open(AddSystemModalComponent, { centered: true, backdrop: 'static' });
-    }
+    // openCreateModal: () => {
+    //   ModuleInjector.open(AddSystemModalComponent, { centered: true, backdrop: 'static' });
+    // }
   },
 
   {
