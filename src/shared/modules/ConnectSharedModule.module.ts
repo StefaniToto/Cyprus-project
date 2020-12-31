@@ -9,11 +9,10 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { CodeEditorModule } from '@ngstack/code-editor';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { StoreModule } from '@ngrx/store';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyModule } from '@ngx-formly/core';
 import { GenericModalComponent } from '../components/generic-modal/generic-modal.component';
-import { ProjectReducer } from 'src/app/list-data/store/reducers/project.reducer';
+
 
 
 
@@ -34,7 +33,7 @@ export let ModuleInjector;
       typingsWorkerUrl: 'assets/workers/typings-worker.js',
       baseUrl: 'assets/monaco',
     }),
-    StoreModule.forFeature('projectState', ProjectReducer),
+  //  StoreModule.forFeature('projectState', ProjectReducer),
   ],
   declarations: [
     GenericModalComponent

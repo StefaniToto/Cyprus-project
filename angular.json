@@ -17,6 +17,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "socket.io-client",
+              "socket.io-parser",
+              "debug",
+              "core-js",
+              "rxjs/Rx",
+              "rxjs-compat"
+              ],
             "outputPath": "dist/ConnectIQ",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,26 +35,28 @@
               "src/favicon.ico", 
               "src/assets", 
               "src/config.json", 
+              "src/manifest.webmanifest",
               {
                 "glob": "**/*",
-                "input": "node_modules/monaco-editor/min",
-                "output": "./assets/monaco"
+                "input": "node_modules/leaflet/dist/images/",
+                "output": "./assets"
               },
               {
                 "glob": "**/*.js",
                 "input": "dist/@ngstack/code-editor/workers",
                 "output": "./assets/workers"
-              }
+              },
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.scss",
               "src/app/assets/styles/rappid.css",
               "src/app/assets/styles/style.css",
               "src/app/assets/styles/style.modern.css",
-
+              "./node_modules/leaflet/dist/leaflet.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/font-awesome/css/font-awesome.css",  
+              "node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -67,7 +77,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -83,14 +92,17 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ConnectIQ:build"
+            "browserTarget": "ConnectIQ:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -111,7 +123,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "styles": ["src/styles.scss"],
             "scripts": []
           }

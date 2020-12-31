@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/*.css",
+          "/*.js"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/**"
+        ]
+      }
+    }, {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [{
+    "name": "jokes-cache",
+    "urls": [ "http://localhost:3080/api/users"],
+    "cacheConfig": {
+      "strategy": "performance",
+      "maxSize": 5,  
+      "maxAge": "15m"
+    }
+  },
+  {
+    "name": "stocks-cache",
+    "urls": [ "http://localhost:3080/api/users"],
+    "cacheConfig": {
+      "strategy": "freshness",
+      "maxSize": 10,
+      "maxAge": "1d",
+      "timeout": "5s"
+    }
+  }]
+}

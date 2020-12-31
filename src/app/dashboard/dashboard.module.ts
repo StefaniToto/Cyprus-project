@@ -5,31 +5,33 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { MatSelectModule } from '@angular/material/select';
-import {  NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormlyModule } from '@ngx-formly/core';
-import { GuideComponent } from './pages/guide/guide.component';
-import { StoreModule } from '@ngrx/store';
-import { ModuleReducer } from 'src/shared/store/reducers/module.reducer';
 import { ConnectSharedModule } from 'src/shared/modules/ConnectSharedModule.module';
-import { FormlySelectComponent } from './components/formly-select/formly-select.component';
+import { MarkerService } from './services/markers/marker.service';
+import { HttpClientModule } from '@angular/common/http';
+import { PopupService } from './services/popup/popup.service';
+import { StoreModule } from '@ngrx/store';
+import { ProjectReducer } from './store/reducers/project.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { ProjectService } from '../list-data/services/project.service';
-import { ProjectEffect } from '../list-data/store/effects/project.effects';
-import { ProjectReducer } from '../list-data/store/reducers/project.reducer';
-
-
-
+import { ProjectEffect } from './store/effects/project.effects';
+import { ProjectService } from './services/project.service';
+import { SocketService } from './services/socket/socket.service';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { GuideComponent } from './components/guide/guide.component';
+import { TestCompComponent } from './test-comp/test-comp.component';
+const config: SocketIoConfig = { url: 'http://localhost:3080', options: {} };
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    GuideComponent
+    GuideComponent,
+    TestCompComponent
 
   ],
   imports: [
+    HttpClientModule,
 
-    EffectsModule.forFeature([ ProjectEffect ]),
     CommonModule,
     DashboardRoutingModule,
     MatCardModule,
@@ -39,33 +41,25 @@ import { ProjectReducer } from '../list-data/store/reducers/project.reducer';
     ReactiveFormsModule,
     ConnectSharedModule,
     StoreModule.forFeature('projectState', ProjectReducer),
-    StoreModule.forFeature('modules', ModuleReducer), // important for dhasboard
-  
+    EffectsModule.forFeature([ProjectEffect]),
+    SocketIoModule.forRoot(config),
 
-
-    FormlyModule.forChild({
-      types: [
-        {
-          name: 'custom-select',
-          component: FormlySelectComponent,
-          extends: 'select',
-        },
-      ],
-      validationMessages: [
-        { name: 'required', message: 'This field is required!' },
-      ],
-    }),
-
- 
   ],
-  exports: [MatCardModule],
+  exports: [
+    MatCardModule,
+  ],
   entryComponents: [
-
+    GuideComponent,
+    TestCompComponent,
+    
   ],
   providers: [
     NgbActiveModal,
+    MarkerService,
+    PopupService,
     ProjectService,
- 
+    SocketService
+
   ],
 })
-export class DashboardModule {}
+export class DashboardModule { }
