@@ -1,25 +1,22 @@
 <main role="main" class="guide">
   <h1 class="text-muted title ml-3">Welcome to Cyprus</h1>
 
-
-
-
-
-  <div class="map-container mt-5">
+  <div class="map-container">
     <div class="map-frame">
-      <div style="height: 600px" 
+      <div style="height: 700px" 
       id="map" 
       leaflet      
       (leafletMapReady)="onMapReady($event)"> </div>
 
-      <button *ngIf="!playing" (mousedown)="play()">Play</button>
-      <button *ngIf="playing" (mousedown)="stop()">Stop</button>
-
-      <div *ngIf="playing">
-        <!-- Checking date: {{playerDate}} -->
-      </div>
+    
     </div>
+
+  <button *ngIf="!playing" (mousedown)="play()">Play</button>
+  <button *ngIf="playing" (mousedown)="stop()">Stop</button>
   </div>
+
+
+
 
 
 
