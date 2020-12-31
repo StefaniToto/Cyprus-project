@@ -1,13 +1,12 @@
 {
-  "name": "ConnectIQ",
-  "short_name": "ConnectIQ",
+  "name": "Cyprus",
+  "short_name": "Cyprus",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
-  "icons": [
-  
+  "icons": [ 
  
   ]
 }

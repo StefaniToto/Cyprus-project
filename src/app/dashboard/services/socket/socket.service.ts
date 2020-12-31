@@ -8,9 +8,6 @@ import { io } from 'socket.io-client';
 export class SocketService {
 
 socket;
-  
-  
-
   constructor() { }
 
   setupSocketConnection() {

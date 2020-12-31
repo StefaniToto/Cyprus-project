@@ -11,32 +11,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ToasterModule } from 'angular2-toaster';
+
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    
+    AppComponent,  
 
   ],
   imports: [
  
     BrowserModule,
     AppRoutingModule, 
-    FormsModule,
-    FormlyBootstrapModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    NgxDatatableModule,
-    BrowserAnimationsModule, // required animations module
-    ToasterModule.forRoot(), 
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     StoreModule.forRoot({}),
     EffectsModule.forRoot(),
@@ -46,15 +39,9 @@ import { environment } from 'src/environments/environment';
  
   ],
   exports : [
-    FormsModule,
-    FormlyBootstrapModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule, // required animations module
-    ToasterModule
-
   ],
   providers: [
-
+   {provide: LocationStrategy, useClass: HashLocationStrategy}
 
 
   ],

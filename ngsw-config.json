@@ -11,14 +11,11 @@
           "/index.html",
           "/*.css",
           "/*.js"
-        ],
-        "urls": [
-          "https://fonts.googleapis.com/**"
         ]
       }
     }, {
       "name": "assets",
-      "installMode": "lazy",
+      "installMode": "prefetch",
       "updateMode": "prefetch",
       "resources": {
         "files": [
@@ -29,22 +26,12 @@
     }
   ],
   "dataGroups": [{
-    "name": "jokes-cache",
+    "name": "api-cache",
     "urls": [ "http://localhost:3080/api/users"],
     "cacheConfig": {
-      "strategy": "performance",
+      "strategy": "prefetch",
       "maxSize": 5,  
       "maxAge": "15m"
-    }
-  },
-  {
-    "name": "stocks-cache",
-    "urls": [ "http://localhost:3080/api/users"],
-    "cacheConfig": {
-      "strategy": "freshness",
-      "maxSize": 10,
-      "maxAge": "1d",
-      "timeout": "5s"
     }
   }]
 }

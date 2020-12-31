@@ -1,7 +1,7 @@
 const projectName = 'GreeceTest';
 
 export const environment = {
-  production: true,
+  production: false,
   projectNameKey: 'Greece test',
   projectYear: '2020',
   apiUrl: '//  https://my-json-server.typicode.com/stefani0/',
