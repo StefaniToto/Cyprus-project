@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ConnectIQ": {
+    "Cyprus": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -15,9 +15,21 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/ConnectIQ",
+          "builder":"@angular-builders/custom-webpack:browser",
+          "options": {      
+
+            "allowedCommonJsDependencies": [
+              "socket.io-client",
+              "socket.io-parser",
+              "debug",
+              "core-js",
+              "rxjs/Rx",
+              "rxjs-compat"
+              ],
+              "customWebpackConfig": {
+                "path": "./custom-webpack.config.js"
+               },
+            "outputPath": "dist/Cyprus",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,31 +39,24 @@
               "src/favicon.ico", 
               "src/assets", 
               "src/config.json", 
+              "src/manifest.webmanifest",
               {
                 "glob": "**/*",
-                "input": "node_modules/monaco-editor/min",
-                "output": "./assets/monaco"
+                "input": "node_modules/leaflet/dist/images/",
+                "output": "./assets"
               },
               {
                 "glob": "**/*.js",
                 "input": "dist/@ngstack/code-editor/workers",
                 "output": "./assets/workers"
-              }
+              },
+              "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/app/assets/styles/rappid.css",
-              "src/app/assets/styles/style.css",
-              "src/app/assets/styles/style.modern.css",
-
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/ngx-toastr/toastr.css",
-              "node_modules/font-awesome/css/font-awesome.css",
-              "node_modules/angular-archwizard/archwizard.css"        
+             "./node_modules/leaflet/dist/leaflet.css"   
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+           
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["src/assets/styles"]
@@ -68,7 +73,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -84,25 +88,28 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ConnectIQ:build"
+            "browserTarget": "Cyprus:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ConnectIQ:build:production"
+              "browserTarget": "Cyprus:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ConnectIQ:build"
+            "browserTarget": "Cyprus:build"
           }
         },
         "test": {
@@ -112,7 +119,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "styles": ["src/styles.scss"],
             "scripts": []
           }
@@ -132,18 +139,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ConnectIQ:serve"
+            "devServerTarget": "Cyprus:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ConnectIQ:serve:production"
+              "devServerTarget": "Cyprus:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ConnectIQ",
+  "defaultProject": "Cyprus",
   
   "cli": {
     "analytics": "fea9cdb6-de4a-4337-912b-d4ae4e364410"

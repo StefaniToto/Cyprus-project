@@ -1,82 +1,48 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
-import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { MatSelectModule } from '@angular/material/select';
-import {  NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ArchwizardModule } from 'angular-archwizard';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormlyModule } from '@ngx-formly/core';
-import { GuideComponent } from './pages/guide/guide.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PopupService } from './services/popup/popup.service';
 import { StoreModule } from '@ngrx/store';
-import { ModuleReducer } from 'src/shared/store/reducers/module.reducer';
-import { ConnectIQSharedModule } from 'src/shared/modules/ConnectIQSharedModule.module';
-import { RulesLayoutComponent } from '../core/transformations/rules-layout/rules-layout.component';
-import { FormlySelectComponent } from './components/formly-select/formly-select.component';
+import { ProjectReducer } from './store/reducers/project.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { ProjectEffect } from '../systems/store/effects/project.effects';
-import { ProjectService } from '../systems/services/project.service';
-import { ProjectReducer } from '../systems/store/reducers/project.reducer';
-import { counterReducer } from '../systems/store/reducers/simple.reducers';
-import { ordersReducer } from '../systems/store/app.store';
-import { AppEffects } from '../systems/store/effects/simple.effects';
-import { OrdersService } from '../systems/services/orders.service';
-
+import { ProjectEffect } from './store/effects/project.effects';
+import { ProjectService } from './services/project.service';
+import { SocketService } from './services/socket/socket.service';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { DashboardComponent } from './dashboard.component';
+import { GuideComponent } from './components/guide/guide.component';
+const config: SocketIoConfig = { url: 'http://localhost:3080', options: {} };
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    GuideComponent
- 
+    GuideComponent, 
 
   ],
   imports: [
-
-    EffectsModule.forFeature([ ProjectEffect ]),
-
-    StoreModule.forFeature( 'orders', ordersReducer ),
-    EffectsModule.forFeature([AppEffects]),
-
-
+    HttpClientModule,
     CommonModule,
-    DashboardRoutingModule,
-    MatCardModule,
-    MatDialogModule,
-    MatSelectModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ConnectIQSharedModule,
+    DashboardRoutingModule,    
     StoreModule.forFeature('projectState', ProjectReducer),
-    StoreModule.forFeature('modules', ModuleReducer), // important for dhasboard
+    EffectsModule.forFeature([ProjectEffect]),
+    SocketIoModule.forRoot(config),
+ 
 
-    StoreModule.forFeature( 'count' , counterReducer ),
-
-
-    FormlyModule.forChild({
-      types: [
-        {
-          name: 'custom-select',
-          component: FormlySelectComponent,
-          extends: 'select',
-        },
-      ],
-      validationMessages: [
-        { name: 'required', message: 'This field is required!' },
-      ],
-    }),
-
-    ArchwizardModule,
   ],
-  exports: [MatCardModule],
+  exports: [
+ 
+  ],
   entryComponents: [
-    RulesLayoutComponent
+
+    
   ],
   providers: [
-    NgbActiveModal,
+    PopupService,
     ProjectService,
-    OrdersService
+    SocketService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+
   ],
 })
-export class DashboardModule {}
+export class DashboardModule { }

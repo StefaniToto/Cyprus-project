@@ -5,6 +5,7 @@ export const environment = {
   projectNameKey: 'Greece test',
   projectYear: '2020',
   apiUrl: '//  https://my-json-server.typicode.com/stefani0/',
-  landingPage: `/${projectName}/module1/`,
+  landingPage: `/${projectName}/`,
+  SOCKET_ENDPOINT: 'http://localhost:3080'
 
 };
